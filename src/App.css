@@ -1,0 +1,350 @@
+#root {
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding: 24px;
+}
+
+.Menu{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+}
+
+
+
+.Card{
+  aspect-ratio: 1/1;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* background-color: var(--card-color); */
+  border-radius: 35px;
+  position: relative;  
+  user-select: none;
+  perspective: 1000px;
+  
+  & h1{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Abril Fatface', cursive;
+  }
+
+  & .Upper{
+    background-color: var(--secondary-color);
+    transition: .4s cubic-bezier(0.21, 0.59, 0.46, 0.84);
+    width: 100%;
+    height: 95%;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-top-left-radius: 35px; */
+    border-radius: 35px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  & .Visible-true{
+    height: 0%;
+  }
+
+  & .FavoriteButton {
+    position: absolute;
+    transition: .4s;
+    top: 18px;
+    right: 18px;
+    margin: 0;
+    width: 34px;
+    height: 34px;
+}
+
+  & .Under{
+    background-color: none;
+    width: 100%;
+    height: calc(100% - 70px);
+    margin-top: 70px;
+    padding: 24px;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--card-color);
+  }
+
+  & .Definition{
+    font-weight: 600;
+    display: block;
+    text-align: center;
+  }
+
+  & .Example{
+    font-weight: 400;    
+    display: block;
+    text-align: center;
+    font-style: italic;
+    color: var(--text-grey);
+  }
+
+  & .CardWrapper {
+      width: 100%;
+      height: 100%;
+      transition: .4s;
+      border-radius: 35px;
+      position: relative;
+      transition: .4s;
+      transform-style: preserve-3d;
+      background-color: var(--card-color);           
+      box-shadow: var(--shadow-s);
+      animation: Appear .4s;
+  }
+
+}
+
+@keyframes Appear {
+  0%{ transform: scale(0)}
+  99%{transform: scale(1)}
+}
+
+.Flip-true {
+  transform: rotateY(-180deg);
+}
+
+.Front, .Back{  
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 35px;
+  overflow: hidden;
+}
+
+.Back {
+  transform: rotateY(180deg);
+}
+
+
+
+.Button{
+  width: 62px;
+  height: 62px;
+  aspect-ratio: 1/1;
+  background-color: var(--card-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: var(--shadow-s);
+  color : var(--main-color);
+  transition: .4s;
+  margin: 18px;
+}
+
+.Button.Active-true{
+  background-color: var(--main-color);
+  color: var(--card-color);
+}
+
+/* .Active-true:hover{
+  background-color: var(--card-color);
+  color: var(--main-color);
+}
+
+.Active-false:hover{
+  background-color: var(--main-color);
+  color: var(--card-color);
+} */
+
+.Randomizer:hover, .SearchGoogle:hover{
+  background-color: var(--main-color);
+  color: var(--card-color);
+}
+
+.SearchBarContainer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SearchBar{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  position: relative;
+
+  /* & .SearchBarContainer{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  } */
+
+  & .Search{
+    width: 100%;
+    height: 62px;
+    border-radius: 100px;
+    border: none;
+    background-color: var(--card-color);
+    color: var(--text-main);
+    padding: 6px 24px;
+    font-size: 1.1em;
+    font-weight: 400;
+    box-shadow: var(--shadow-s);
+  }
+
+  & .SearchButton{
+    --inside : 56px;
+    position: absolute;
+    right: calc(62px - var(--inside));
+    margin: 0;
+    width: var(--inside);
+    height: var(--inside);
+    background-color: var(--main-color);
+    color: var(--card-color);
+    aspect-ratio: 1/1;
+    box-shadow: none;
+  }
+}
+
+.invert{
+
+  
+  .Upper {
+    background-color: var(--card-color);
+
+    & h1{
+      color: var(--secondary-color);
+    }
+  }
+
+  .Under{
+    background-color: var(--secondary-color);
+  }
+
+  .CardWrapper {
+    background: linear-gradient(180deg, rgba(255,255,255,1) 3%, var(--secondary-color) 15%);
+  }
+
+  .Definition{
+    color: var(--card-color);
+  }
+
+  .Example{
+    color: var(--text-grey);
+  }
+}
+
+:root{  
+  --opacity-overlay : 0;
+  --display-overlay : none;
+  --transition-overlay : 0s;
+  --animation-overlay : fadeIn;
+  --index-overlay : -999;
+  --y : 0px;
+  --x : calc(100% - 30px + var(--y));
+  --transition-drawer : 0s;
+}
+
+.DrawerOverlay{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  left: 0;
+  top: 0;
+  z-index: var(--index-overlay);
+  opacity: var(--opacity-overlay);
+  transition: var(--transition-overlay) cubic-bezier(0.65, 0.05, 0.36, 1);
+  /* display: var(--display-overlay); */
+  /* animation: var(--animation-overlay) 2s; */
+}
+
+
+
+.Drawer {
+  
+  z-index: 1000;
+  width: 100%;
+  height: fit-content;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: translateY(var(--x));
+  transition: var(--transition-drawer) cubic-bezier(0.65, 0.05, 0.36, 1);
+  overflow: hidden;
+  /* transition: .4s; */
+
+  & .GripContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 30px;
+    background-color: rgba(255,255,255,var(--opacity-overlay));
+    transition: var(--transition-drawer) cubic-bezier(0.65, 0.05, 0.36, 1);
+  }
+
+  & .Grip{
+    border-radius: 100px;
+    width: 100px;
+    height: 6px;
+    cursor: grab;
+  }
+
+  & .DrawerContent{
+    width: 100%;
+    height: 50%;
+    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    transition: var(--transition-drawer) cubic-bezier(0.65, 0.05, 0.36, 1);
+    background-color: rgba(255,255,255,var(--opacity-overlay));
+  }
+
+  & .CardFavorite{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+    color: var(--card-color);
+    border-radius: 100px;
+    width: fit-content;    
+    height: 45px;
+    padding: 12px;
+    margin: 12px;
+    cursor: pointer;
+  }
+}
+
+.Open-Drawer{
+  transform: translateY(0%);
+  transition: .4s;
+}
