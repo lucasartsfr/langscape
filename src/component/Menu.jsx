@@ -4,25 +4,33 @@ import { BsEyeFill } from 'react-icons/bs'; // Replace with your desired
 import { BsTranslate } from 'react-icons/bs'; // Replace with your desired
 import { FaRandom } from 'react-icons/fa'; // Replace with your desired
 import { PiStarFill } from 'react-icons/pi'; // Replace with your desired
-import { useAppContext } from './AppContext';
+import useStore from '../store/zustand';
 
 export default function Menu() {
-
-  const {setTranslate, setVisible, translate, visible, refetch, swipe, setShowDrawer} = useAppContext() 
+  const { setTranslate, toggleTranslate, setVisible, toggleVisible, translate, visible, fetchVocabulary, swipe, setShowDrawer, swipeCard  } = useStore()
   
   const updateTranslate = () =>{
-    setTranslate(prev => !prev);
+    console.log('ok')
+    toggleTranslate(prev => !prev);
   }
 
   const updateVisible = () =>{
-    setVisible(prev => !prev)
+    toggleVisible(prev => {
+      console.log("Toggled Visible: " + !prev)
+      return !prev
+    })
   }
 
   const updateword = () =>{
-    refetch();
-    setTranslate(false);
-    setVisible(false);
-    swipe('right')
+    try {
+      swipeCard('right');
+      // Attendre un peu que l'animation se termine
+      setTranslate(false);
+      setVisible(false);
+      fetchVocabulary();
+    } catch (error) {
+      console.error('Erreur lors du swipe:', error);
+    }
   }
 
   const updateDrawer = () =>{

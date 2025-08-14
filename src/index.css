@@ -19,12 +19,13 @@
   --bg-color : #F8F9F9;
   --card-color : #FFFFFF;
   --text-grey : #CECECE;
+  --text-grey-dark : #ededed;
   --text-main : #333333;
   --shadow-xl : 0px 0 28px 0 rgb(0 0 0 / 16%);
   --shadow-l : 0px 0 28px 0 rgb(0 0 0 / 12%);
   --shadow-m : 0px 0 28px 0 rgb(0 0 0 / 8%);
   --shadow-s : 0px 0 28px 0 rgb(0 0 0 / 4%);
-
+  --transition : .4s cubic-bezier(0.21, 0.59, 0.46, 0.84);
 }
 
 *{
@@ -46,4 +47,8 @@ html, body{
 
 textarea:focus, input:focus{
   outline: none;
+}
+
+.loader{
+  color: red;
 }

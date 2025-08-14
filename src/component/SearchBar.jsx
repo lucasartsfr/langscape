@@ -1,20 +1,17 @@
 import { useRef } from 'react'
 import IconButton from './IconButton'
 import { FiSearch } from 'react-icons/fi'; // Replace with your desired
-import { useAppContext } from './AppContext';
+import useStore from '../store/zustand';
 import { FcGoogle } from "react-icons/fc"
 
 export default function SearchBar() {
-
-  const {refetch, customWord, theData} = useAppContext();
+  const { fetchVocabulary, setCustomWord, theData } = useStore();
   const myRef = useRef();
 
   const updateWord = () =>{
     if(myRef.current.value != ""){
-      customWord.current = myRef.current.value;
-      refetch();
+      fetchVocabulary(myRef.current.value);
       myRef.current.value = "";
-      customWord.current = "";
     }    
   }
   

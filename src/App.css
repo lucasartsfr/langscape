@@ -22,12 +22,11 @@
 
 
 .Card{
-  aspect-ratio: 1/1;
+  aspect-ratio: 1/1.3;
   width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  /* background-color: var(--card-color); */
   border-radius: 35px;
   position: relative;  
   user-select: none;
@@ -38,15 +37,28 @@
     margin: 0;
     padding: 0;
     font-family: 'Abril Fatface', cursive;
+    font-size: 2rem;
+    transition: .3s;
+  }
+
+  & .WordPhonetic{
+    font-size: 1rem;
+    color: var(--text-grey);
+    margin: 10px 0;
+    overflow: hidden;
+    transition: .2s;
+    visibility: visible;
+    max-height: 100%;
   }
 
   & .Upper{
     background-color: var(--secondary-color);
-    transition: .4s cubic-bezier(0.21, 0.59, 0.46, 0.84);
+    transition: var(--transition);
     width: 100%;
     height: 95%;
     min-height: 70px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     /* border-bottom-left-radius: 35px;
@@ -58,8 +70,25 @@
     top: 0;
   }
 
+
   & .Visible-true{
     height: 0%;
+  }
+
+  .Visible-true .VideoContainer{
+    opacity: 0;
+    height: 0%;
+  }
+
+  .Visible-true h1{
+    font-size: 1.275rem;
+    line-height: 1rem;
+  }
+
+  .Visible-true .WordPhonetic{
+    visibility: hidden;
+    max-height: 0%;
+    margin: 0;
   }
 
   & .FavoriteButton {
@@ -69,7 +98,8 @@
     right: 18px;
     margin: 0;
     width: 34px;
-    height: 34px;
+    height: auto;
+    aspect-ratio: 1;
 }
 
   & .Under{
@@ -96,23 +126,92 @@
     display: block;
     text-align: center;
     font-style: italic;
-    color: var(--text-grey);
+    color: var(--text-grey-dark);
   }
 
   & .CardWrapper {
       width: 100%;
       height: 100%;
-      transition: .4s;
+      transition: var(--transition);
       border-radius: 35px;
       position: relative;
-      transition: .4s;
+      transition: var(--transition);
       transform-style: preserve-3d;
       background-color: var(--card-color);           
       box-shadow: var(--shadow-s);
-      animation: Appear .4s;
+      animation: Appear var(--transition);
   }
 
 }
+
+.WordContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.VideoContainer{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;  
+  height: 100%;
+  max-height: 50%;
+  /* z-index: 9999; */
+  backface-visibility: hidden;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  transition: .2s;
+}
+
+.VideoPlayer{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+  }
+
+  .VideoSubtitle{
+     position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgb(0 0 0);
+    bottom: 10px;
+    width: 80%;
+    text-align: center;
+    font-size: .775rem;
+    line-height: 1rem;
+    border-radius: 4px;
+    padding: 4px;
+    color: #ffffff;
+  }
+
+  .VideoPlayButton{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    width: 50px;
+    aspect-ratio: 1;
+    padding: 1rem;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    color: white;
+    cursor: pointer
+  }
 
 @keyframes Appear {
   0%{ transform: scale(0)}
@@ -137,6 +236,10 @@
   transform: rotateY(180deg);
 }
 
+.Back .Upper {
+  justify-content: center;
+}
+
 
 
 .Button{
@@ -152,7 +255,7 @@
   cursor: pointer;
   box-shadow: var(--shadow-s);
   color : var(--main-color);
-  transition: .4s;
+  transition: var(--transition);
   margin: 18px;
 }
 
@@ -251,7 +354,7 @@
   }
 
   .Example{
-    color: var(--text-grey);
+    color: var(--text-grey-dark);
   }
 }
 
@@ -346,5 +449,5 @@
 
 .Open-Drawer{
   transform: translateY(0%);
-  transition: .4s;
+  transition: var(--transition);
 }
