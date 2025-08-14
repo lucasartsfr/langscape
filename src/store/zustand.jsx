@@ -16,8 +16,8 @@ const loader = {
 
 export const fetchVocabularyData = async (customWord) => {
   const req = customWord ? customWord : "";
-  console.log('📡 Making request to:', `http://localhost:3000/search?q=${req}&trad=true`);
-  const response = await fetch(`http://localhost:3000/search?q=${req}&trad=true`);
+  console.log('📡 Making request to:', `https://trad.crynet.app/search?q=${req}&trad=true`);
+  const response = await fetch(`https://trad.crynet.app/search?q=${req}&trad=true`);
   if (!response.ok) {
     console.error('❌ Request failed:', response.status, response.statusText);
     throw new Error('Network response was not ok');
